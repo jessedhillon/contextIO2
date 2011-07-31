@@ -46,7 +46,6 @@ class ContextIO(object):
         pass
 
     def handle_request_error(self, response, body):
-        import pdb; pdb.set_trace()
         messages = []
         try:
             body = json.loads(body)
@@ -72,7 +71,7 @@ class Resource(object):
         self.base_uri = quote(base_uri.format(**defn))
 
     def uri_for(self, *elems):
-        return self.base_uri + '/' + ('/'.join(elems))
+        return '/'.join([self.base_uri] + list(elems))
 
     def request_uri(self, uri_elems, method="GET", params={}):
         uri = self.uri_for(uri_elems)
