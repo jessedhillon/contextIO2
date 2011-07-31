@@ -12,6 +12,7 @@ def uncamelize(d):
         u = to_underscore(k)
         if u != k and u not in d:
             d[u] = v
+            drop.append(k)
 
     for k in drop:
         del d[k]
